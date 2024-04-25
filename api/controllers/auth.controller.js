@@ -1,7 +1,8 @@
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
 
-export const singup = async (req, res) => {
+export const singup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (
@@ -12,7 +13,7 @@ export const singup = async (req, res) => {
     email === "" ||
     password === ""
   ) {
-    return res.status(400).json({ msg: "Todos los campos son requeridos" });
+    next(errorHandler(400, "Todos los campos son requeridos"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -27,6 +28,6 @@ export const singup = async (req, res) => {
     await newUser.save();
     res.json({ message: "Registro exitoso" });
   } catch (error) {
-    res.status(500).json({ message: "Error al registrar usuario" });
+    next(error);
   }
 };

@@ -1,3 +1,3 @@
 export default function SingIn() {
-  return <div>SingIn</div>;
+  return <div>Iniciar sesión</div>;
 }

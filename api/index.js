@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.route.js";
 
 dotenv.config();
 
+// Conexión a MongoDB
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -19,9 +20,22 @@ const app = express();
 
 app.use(express.json());
 
+// Iniciar el servidor
 app.listen(3000, () => {
   console.log("Server is running on port 3000...");
 });
 
+// Rutas
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+
+// Middleware de errores
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Error interno del servidor";
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});

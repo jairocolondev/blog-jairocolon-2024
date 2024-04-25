@@ -44,6 +44,7 @@ export default function Header() {
           <Button
             className="sing-in--button"
             gradientDuoTone="purpleToBlue"
+            outline
             pill
           >
             Iniciar sesión

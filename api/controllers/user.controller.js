@@ -1,3 +1,3 @@
-export const test = (req, res) => {
+export const users = (req, res) => {
   res.json({ message: "API is working..." });
 };

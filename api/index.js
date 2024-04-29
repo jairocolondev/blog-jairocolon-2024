@@ -8,7 +8,10 @@ dotenv.config();
 
 // Conexión a MongoDB
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(
+    "mongodb+srv://jairocolondev:Dev531*@blog-jairocolon.verpo4r.mongodb.net/?retryWrites=true&w=majority&appName=blog-jairocolon"
+  )
+  // .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB...");
   })

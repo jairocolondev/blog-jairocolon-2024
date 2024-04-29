@@ -28,11 +28,11 @@ app.listen(3000, () => {
   console.log("Server is running on port 3000...");
 });
 
-//Como hostear React diectorio desde express? Así... -->
-app.use(express.static("/client/build"));
+//Como hostear React directorio desde express? Así... -->
+app.use(express.static("/client/dist"));
 //luego le decimos a express que sirva todo eso desde el home
 app.get("/", (req, res) => {
-  res.sendFile(path.join("/client/build", "index.html"));
+  res.sendFile(path.join("/client/dist", "index.html"));
 });
 
 // Rutas
